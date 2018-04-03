@@ -189,18 +189,22 @@
     <Folder Include="Scripts\Webpack\" />
   </ItemGroup>
   <ItemGroup>
-	<Reference Include="ActiveQueryBuilder.MSSQLMetadataProvider">
-      <HintPath>..\packages\ActiveQueryBuilder.MSSQLMetadataProvider.3.4.7.1084\lib\net\ActiveQueryBuilder.MSSQLMetadataProvider.dll</HintPath>
-    </Reference>
-    <Reference Include="ActiveQueryBuilder.Core">
-		<HintPath>..\packages\ActiveQueryBuilder.Core.3.4.7.1084\lib\net\ActiveQueryBuilder.Core.dll</HintPath>
-	</Reference>
-    <Reference Include="ActiveQueryBuilder.View">
-		<HintPath>..\packages\ActiveQueryBuilder.Web.MVC.3.1.2.1\lib\net\ActiveQueryBuilder.View.dll</HintPath>
-	</Reference>
-    <Reference Include="ActiveQueryBuilder.Web.Server">
-		<HintPath>..\packages\ActiveQueryBuilder.Web.MVC.3.1.2.1\lib\net\ActiveQueryBuilder.Web.Server.dll</HintPath>
-	</Reference>
+    <ProjectReference Include="..\..\..\..\ActiveQueryBuilderNET_3.0\MetadataProviders\MSSQLMetadataProvider\MsSqlMetadataProvider.csproj">
+      <Project>{c1e81f68-f527-4f06-a61a-2606b02aed8a}</Project>
+      <Name>MsSqlMetadataProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\ActiveQueryBuilderNET_3.0\QueryBuilder.Core\QueryBuilder.Core.csproj">
+      <Project>{d571fc40-8ef7-4c6f-925a-4aae76e157a0}</Project>
+      <Name>QueryBuilder.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\ActiveQueryBuilderNET_3.0\QueryBuilder.View\QueryBuilder.View.csproj">
+      <Project>{05768013-1b6a-46b9-bd03-d5487a8fcc53}</Project>
+      <Name>QueryBuilder.View</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Server\Server.csproj">
+      <Project>{f90df414-a0ac-4ad8-8ef4-b53a5bffc639}</Project>
+      <Name>Server</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
