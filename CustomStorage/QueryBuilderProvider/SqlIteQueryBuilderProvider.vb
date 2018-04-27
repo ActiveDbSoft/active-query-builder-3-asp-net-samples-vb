@@ -14,7 +14,10 @@ Namespace QueryBuilderProvider
 		''' </summary>
 		Private ReadOnly _connection As IDbConnection
 
+		Public ReadOnly Property SaveState As Boolean Implements IAQBProvider.SaveState
+		
 		Public Sub New()
+			SaveState = True
 			_connection = DataBaseHelper.CreateSqLiteConnection("SqLiteDataBase")
 
 			Dim sql = "create table if not exists QueryBuilders(id text primary key, layout TEXT)"

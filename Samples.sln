@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CustomStorage", "CustomStorage\CustomStorage.vbproj", "{357E2284-04EA-4C70-8989-A9AECD0491D3}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "JavaScript", "JavaScript\JavaScript.vbproj", "{E42FC343-761D-4BF8-858A-6DB02B1EED49}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MVC", "MVC\MVC.vbproj", "{60FBCC64-E66E-49D6-B776-7DED6341A1FF}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{357E2284-04EA-4C70-8989-A9AECD0491D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{357E2284-04EA-4C70-8989-A9AECD0491D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{357E2284-04EA-4C70-8989-A9AECD0491D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{357E2284-04EA-4C70-8989-A9AECD0491D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E42FC343-761D-4BF8-858A-6DB02B1EED49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E42FC343-761D-4BF8-858A-6DB02B1EED49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E42FC343-761D-4BF8-858A-6DB02B1EED49}.Release|Any CPU.ActiveCfg = Release|Any CPU

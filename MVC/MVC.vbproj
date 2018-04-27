@@ -256,34 +256,27 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\ActiveQueryBuilderNET_3.0\MetadataProviders\EventMetadataProvider\EventMetadataProvider.csproj">
-      <Project>{0E31A4EE-E861-4955-909D-21270B2EC58B}</Project>
-      <Name>EventMetadataProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\ActiveQueryBuilderNET_3.0\MetadataProviders\OLEDBMetadataProvider\OLEDBMetadataProvider.csproj">
-      <Project>{04b4d848-7f11-4878-8d48-94b9427e5f67}</Project>
-      <Name>OLEDBMetadataProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\ActiveQueryBuilderNET_3.0\MetadataProviders\SQLiteMetadataProvider\SQLiteMetadataProvider.csproj">
-      <Project>{aa8951a0-4382-4b35-9f08-0755f93f311b}</Project>
-      <Name>SQLiteMetadataProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\ActiveQueryBuilderNET_3.0\QueryBuilder.Core\QueryBuilder.Core.csproj">
-      <Project>{d571fc40-8ef7-4c6f-925a-4aae76e157a0}</Project>
-      <Name>QueryBuilder.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\ActiveQueryBuilderNET_3.0\QueryBuilder.View\QueryBuilder.View.csproj">
-      <Project>{05768013-1b6a-46b9-bd03-d5487a8fcc53}</Project>
-      <Name>QueryBuilder.View</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\MVC\MVC.csproj">
-      <Project>{bc74867e-3f64-4aa2-9e40-a024f72f6f4d}</Project>
-      <Name>MVC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Server\Server.csproj">
-      <Project>{f90df414-a0ac-4ad8-8ef4-b53a5bffc639}</Project>
-      <Name>Server</Name>
-    </ProjectReference>
+	<Reference Include="ActiveQueryBuilder.Core">
+		<HintPath>..\packages\ActiveQueryBuilder.EventMetadataProvider.3.4.11.1088\lib\net\ActiveQueryBuilder.EventMetadataProvider.dll</HintPath>
+	</Reference>
+	<Reference Include="ActiveQueryBuilder.Core">
+		<HintPath>..\packages\ActiveQueryBuilder.OLEDBMetadataProvider.3.4.11.1088\lib\net\ActiveQueryBuilder.OLEDBMetadataProvider.dll</HintPath>
+	</Reference>
+	<Reference Include="ActiveQueryBuilder.Core">
+		<HintPath>..\packages\ActiveQueryBuilder.SQLiteMetadataProvider.3.4.11.1088\lib\net\ActiveQueryBuilder.SQLiteMetadataProvider.dll</HintPath>
+	</Reference>
+	<Reference Include="ActiveQueryBuilder.Core">
+		<HintPath>..\packages\ActiveQueryBuilder.Core.3.4.11.1088\lib\net\ActiveQueryBuilder.Core.dll</HintPath>
+	</Reference>
+	<Reference Include="ActiveQueryBuilder.View">
+		<HintPath>..\packages\ActiveQueryBuilder.Web.MVC.3.2.1\lib\net\ActiveQueryBuilder.View.dll</HintPath>
+	</Reference>
+	<Reference Include="ActiveQueryBuilder.MVC">
+		<HintPath>..\packages\ActiveQueryBuilder.Web.MVC.3.2.1\lib\net\ActiveQueryBuilder.MVC.dll</HintPath>
+	</Reference>
+    <Reference Include="ActiveQueryBuilder.Web.Server">
+		<HintPath>..\packages\ActiveQueryBuilder.Web.MVC.3.2.1\lib\net\ActiveQueryBuilder.Web.Server.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
