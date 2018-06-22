@@ -8,7 +8,7 @@ Imports WebForms_Samples.Helpers
 
 Namespace Samples
 	Public Partial Class ChangeConnection
-		Inherits Page
+		Inherits BasePage
 		Protected Sub Page_Load(sender As Object, e As EventArgs)
 			' Get an instance of the QueryBuilder object
 			Dim qb = QueryBuilderStore.[Get]("ChangeConnection")

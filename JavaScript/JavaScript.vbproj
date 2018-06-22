@@ -189,17 +189,15 @@
     <Folder Include="Scripts\Webpack\" />
   </ItemGroup>
   <ItemGroup>
-	<Reference Include="ActiveQueryBuilder.MsSqlMetadataProvider">
-		<HintPath>..\packages\ActiveQueryBuilder.MsSqlMetadataProvider.3.4.11.1088\lib\net\ActiveQueryBuilder.MsSqlMetadataProvider.dll</HintPath>
+    <Reference Include="ActiveQueryBuilder.MSSQLMetadataProvider"><Private>True</Private></Reference>
+    <Reference Include="ActiveQueryBuilder.Core">
+		<HintPath>..\packages\ActiveQueryBuilder.Core.3.4.18.1097\lib\net\ActiveQueryBuilder.Core.dll</HintPath>
 	</Reference>
-	<Reference Include="ActiveQueryBuilder.Core">
-		<HintPath>..\packages\ActiveQueryBuilder.Core.3.4.11.1088\lib\net\ActiveQueryBuilder.Core.dll</HintPath>
-	</Reference>
-	<Reference Include="ActiveQueryBuilder.View">
-		<HintPath>..\packages\ActiveQueryBuilder.Web.MVC.3.2.1\lib\net\ActiveQueryBuilder.View.dll</HintPath>
+    <Reference Include="ActiveQueryBuilder.View">
+		<HintPath>..\packages\ActiveQueryBuilder.Web.MVC.3.2.3\lib\net\ActiveQueryBuilder.View.dll</HintPath>
 	</Reference>
     <Reference Include="ActiveQueryBuilder.Web.Server">
-		<HintPath>..\packages\ActiveQueryBuilder.Web.MVC.3.2.1\lib\net\ActiveQueryBuilder.Web.Server.dll</HintPath>
+		<HintPath>..\packages\ActiveQueryBuilder.Web.MVC.3.2.3\lib\net\ActiveQueryBuilder.Web.Server.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

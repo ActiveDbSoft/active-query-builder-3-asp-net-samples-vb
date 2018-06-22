@@ -5,6 +5,7 @@ Imports ActiveQueryBuilder.Core
 Imports ActiveQueryBuilder.Web.Server
 
 Namespace Controllers
+    ' //CUT:STD{{
 	Public Class UserDefinedFieldsController
 		Inherits Controller
 		Public Function Index() As ActionResult
@@ -20,14 +21,11 @@ Namespace Controllers
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("UserDefinedFields")
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("UserDefinedFields")
 
 			' Enables manipulations with user-defined fields in the visual UI
 			queryBuilder.EnableUserFields = True
-
-			' Create an instance of the proper syntax provider for your database server.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+            
 			' Denies metadata loading requests from the metadata provider
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 
@@ -40,4 +38,5 @@ Namespace Controllers
 			Return queryBuilder
 		End Function
 	End Class
+    ' //}}CUT:STD
 End Namespace

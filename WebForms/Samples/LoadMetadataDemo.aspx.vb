@@ -7,7 +7,7 @@ Imports WebForms_Samples.Helpers
 
 Namespace Samples
 	Public Partial Class LoadMetadataDemo
-		Inherits Page
+		Inherits BasePage
 		Private ReadOnly _conn As IDbConnection = DataBaseHelper.CreateSqLiteConnection("SqLiteDataBase")
 		Protected ActiveTabs As Integer = 0
 

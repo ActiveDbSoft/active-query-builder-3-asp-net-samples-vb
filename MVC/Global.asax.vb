@@ -31,7 +31,7 @@ Public Class Logger
 		Log.[Error](message)
 	End Sub
 
-	Public Sub [Error](ex As Exception, message As String) Implements ActiveQueryBuilder.Core.ILog.Error
+	Public Sub [Error](message As String, ex As Exception) Implements ActiveQueryBuilder.Core.ILog.Error
 		Log.[Error](message, ex)
 	End Sub
 End Class

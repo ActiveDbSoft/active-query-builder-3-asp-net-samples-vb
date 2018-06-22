@@ -20,14 +20,11 @@ Namespace Controllers
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Get instance of QueryBuilder
-			Dim queryBuilder = QueryBuilderStore.Create("MetadataStructure")
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("MetadataStructure")
 
 			' Turn this property on to suppress parsing error messages when user types non-SELECT statements in the text editor.
 			queryBuilder.BehaviorOptions.AllowSleepMode = True
-
-			' Assign an instance of the syntax provider which defines SQL syntax and metadata retrieval rules.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+            
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 
 			' Load MetaData from XML document. File name stored in WEB.CONFIG file in [/configuration/appSettings/Db2XmlMetaData] key

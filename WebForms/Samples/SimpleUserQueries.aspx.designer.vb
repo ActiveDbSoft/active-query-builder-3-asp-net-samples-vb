@@ -29,16 +29,7 @@ Namespace Samples
 		''' To modify move field declaration from designer file to code-behind file.
 		''' </remarks>
 		Protected ObjectTreeView1 As Global.ActiveQueryBuilder.Web.WebForms.ObjectTreeView
-
-		''' <summary>
-		''' UserQueries1 control.
-		''' </summary>
-		''' <remarks>
-		''' Auto-generated field.
-		''' To modify move field declaration from designer file to code-behind file.
-		''' </remarks>
-		Protected UserQueries1 As Global.ActiveQueryBuilder.Web.WebForms.UserQueries
-
+        
 		''' <summary>
 		''' SubQueryNavigationBar1 control.
 		''' </summary>

@@ -5,7 +5,7 @@ Imports WebForms_Samples.Helpers
 
 Namespace Samples
 	Public Partial Class SimpleOLEDBDemo
-		Inherits Page
+		Inherits BasePage
 		Const qbId As String = "Simple"
 		' identifies instance of the QueryBuilder object within a session
 		Protected Sub Page_Load(sender As Object, e As EventArgs)
@@ -32,14 +32,11 @@ Namespace Samples
 		''' <returns>Returns instance of the QueryBuilder object.</returns>
 		Private Function CreateQueryBuilder(AInstanceId As String) As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create(AInstanceId)
+			Dim queryBuilder = QueryBuilderStore.Factory.MSAccess(AInstanceId)
 
 			' Turn this property on to suppress parsing error messages when user types non-SELECT statements in the text editor.
 			queryBuilder.BehaviorOptions.AllowSleepMode = False
-
-			' Assign an instance of the syntax provider which defines SQL syntax and metadata retrieval rules.
-			queryBuilder.SyntaxProvider = New MSAccessSyntaxProvider()
-
+            
 			' Bind Active Query Builder to a live database connection.
 				' Assign an instance of DBConnection object to the Connection property.
 			queryBuilder.MetadataProvider = New OLEDBMetadataProvider() With { _

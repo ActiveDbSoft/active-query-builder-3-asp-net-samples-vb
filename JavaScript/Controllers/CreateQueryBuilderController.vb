@@ -25,11 +25,8 @@ Namespace Controllers
 			End If
 
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create(name)
-
-			' Create an instance of the proper syntax provider for your database server.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql(name)
+            
 			' Denies metadata loading requests from live database connection
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 

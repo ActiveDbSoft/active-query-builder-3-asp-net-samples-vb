@@ -6,7 +6,7 @@ Imports ActiveQueryBuilder.Web.Server
 
 Namespace Samples
 	Public Partial Class JQueryUITheming
-		Inherits Page
+		Inherits BasePage
 		Protected Sub Page_Load(sender As Object, e As EventArgs)
 			' Get an instance of the QueryBuilder object
 			Dim qb = QueryBuilderStore.[Get]("JQueryUiTheming")
@@ -26,11 +26,8 @@ Namespace Samples
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("JQueryUiTheming")
-
-			' Create an instance of the proper syntax provider for your database server.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("JQueryUiTheming")
+            
 			' Denies metadata loading requests from the metadata provider
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 

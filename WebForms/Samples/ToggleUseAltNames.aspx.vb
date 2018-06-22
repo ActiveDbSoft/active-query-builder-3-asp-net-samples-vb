@@ -6,7 +6,7 @@ Imports ActiveQueryBuilder.Web.Server
 
 Namespace Samples
 	Public Partial Class ToggleUseAltNames
-		Inherits Page
+		Inherits BasePage
 		Protected Sub Page_Load(sender As Object, e As EventArgs)
 			' Get an instance of the QueryBuilder object
 			Dim qb = QueryBuilderStore.[Get]("ToggleUseAltNames")
@@ -26,16 +26,14 @@ Namespace Samples
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("ToggleUseAltNames")
+			Dim queryBuilder = QueryBuilderStore.Factory.DB2("ToggleUseAltNames")
 
 			' Turn displaying of alternate names on in the text of result SQL query
 			queryBuilder.SQLFormattingOptions.UseAltNames = False
 
 			' Turn displaying of alternate names on in the visual UI
 			queryBuilder.SQLGenerationOptions.UseAltNames = False
-
-			queryBuilder.SyntaxProvider = New DB2SyntaxProvider()
-
+            
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 
 			' Load MetaData from XML document. File name stored in WEB.CONFIG file in [/configuration/appSettings/Db2XmlMetaData] key

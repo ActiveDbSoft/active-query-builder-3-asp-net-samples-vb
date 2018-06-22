@@ -20,11 +20,8 @@ Namespace Controllers
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("CustomExpressionEditor")
-
-			' Create an instance of the proper syntax provider for your database server.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("CustomExpressionEditor")
+            
 			' Denies metadata loading requests from the metadata provider
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 

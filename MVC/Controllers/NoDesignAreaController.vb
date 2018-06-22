@@ -20,14 +20,11 @@ Namespace Controllers
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("NoDesignArea")
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("NoDesignArea")
 
 			' Turn this property on to suppress parsing error messages when user types non-SELECT statements in the text editor.
 			queryBuilder.BehaviorOptions.AllowSleepMode = True
-
-			' Assign an instance of the syntax provider which defines SQL syntax and metadata retrieval rules.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+            
 			' Denies metadata loading requests from the metadata provider
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 

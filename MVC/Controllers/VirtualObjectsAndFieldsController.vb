@@ -20,12 +20,11 @@ Namespace Controllers
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("VirtualObjectsAndFields")
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("VirtualObjectsAndFields")
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 
 			' Turn this property on to suppress parsing error messages when user types non-SELECT statements in the text editor.
 			queryBuilder.BehaviorOptions.AllowSleepMode = True
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
 
 			' Load MetaData from XML document. File name stored in WEB.CONFIG file in [/configuration/appSettings/Db2XmlMetaData] key
 			Dim path__1 = ConfigurationManager.AppSettings("NorthwindXmlMetaData")

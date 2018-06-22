@@ -267,6 +267,9 @@
       <DependentUpon>AlternateNames.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Samples\BasePage.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Samples\ChangeConnection.aspx.designer.vb">
       <DependentUpon>ChangeConnection.aspx</DependentUpon>
     </Compile>
@@ -430,26 +433,26 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-<Reference Include="ActiveQueryBuilder.Core">
-		<HintPath>..\packages\ActiveQueryBuilder.EventMetadataProvider.3.4.11.1088\lib\net\ActiveQueryBuilder.EventMetadataProvider.dll</HintPath>
+    <Reference Include="ActiveQueryBuilder.EventMetadataProvider">
+		<HintPath>..\packages\ActiveQueryBuilder.Core.3.4.18.1097\lib\net\ActiveQueryBuilder.EventMetadataProvider.dll</HintPath>
 	</Reference>
-	<Reference Include="ActiveQueryBuilder.Core">
-		<HintPath>..\packages\ActiveQueryBuilder.OLEDBMetadataProvider.3.4.11.1088\lib\net\ActiveQueryBuilder.OLEDBMetadataProvider.dll</HintPath>
+    <Reference Include="ActiveQueryBuilder.OLEDBMetadataProvider">
+		<HintPath>..\packages\ActiveQueryBuilder.OLEDBMetadataProvider.3.4.18.1097\lib\net\ActiveQueryBuilder.OLEDBMetadataProvider.dll</HintPath>
 	</Reference>
-	<Reference Include="ActiveQueryBuilder.Core">
-		<HintPath>..\packages\ActiveQueryBuilder.SQLiteMetadataProvider.3.4.11.1088\lib\net\ActiveQueryBuilder.SQLiteMetadataProvider.dll</HintPath>
+    <Reference Include="ActiveQueryBuilder.SQLiteMetadataProvider">
+		<HintPath>..\packages\ActiveQueryBuilder.SQLiteMetadataProvider.3.4.18.1097\lib\net\ActiveQueryBuilder.SQLiteMetadataProvider.dll</HintPath>
 	</Reference>
-	<Reference Include="ActiveQueryBuilder.Core">
-		<HintPath>..\packages\ActiveQueryBuilder.Core.3.4.11.1088\lib\net\ActiveQueryBuilder.Core.dll</HintPath>
+    <Reference Include="ActiveQueryBuilder.Core">
+		<HintPath>..\packages\ActiveQueryBuilder.Core.3.4.18.1097\lib\net\ActiveQueryBuilder.Core.dll</HintPath>
 	</Reference>
-	<Reference Include="ActiveQueryBuilder.View">
-		<HintPath>..\packages\ActiveQueryBuilder.Web.WebForms.3.2.1\lib\net\ActiveQueryBuilder.View.dll</HintPath>
-	</Reference>
-	<Reference Include="ActiveQueryBuilder.WebForms">
-		<HintPath>..\packages\ActiveQueryBuilder.Web.WebForms.3.2.1\lib\net\ActiveQueryBuilder.WebForms.dll</HintPath>
+    <Reference Include="ActiveQueryBuilder.View">
+		<HintPath>..\packages\ActiveQueryBuilder.Web.WebForms.3.2.3\lib\net\ActiveQueryBuilder.View.dll</HintPath>
 	</Reference>
     <Reference Include="ActiveQueryBuilder.Web.Server">
-		<HintPath>..\packages\ActiveQueryBuilder.Web.WebForms.3.2.1\lib\net\ActiveQueryBuilder.Web.Server.dll</HintPath>
+		<HintPath>..\packages\ActiveQueryBuilder.Web.WebForms.3.2.3\lib\net\ActiveQueryBuilder.Web.Server.dll</HintPath>
+	</Reference>
+    <Reference Include="ActiveQueryBuilder.Web.WebForms">
+		<HintPath>..\packages\ActiveQueryBuilder.Web.WebForms.3.2.3\lib\net\ActiveQueryBuilder.Web.WebForms.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

@@ -27,11 +27,8 @@ Namespace Controllers
 		''' <returns>Returns instance of the QueryBuilder object.</returns>
 		Private Function CreateQueryBuilder(AInstanceId As String) As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create(AInstanceId)
-
-			' Create an instance of the proper syntax provider for your database server.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql(AInstanceId)
+            
 			' Denies metadata loading requests from live database connection
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 

@@ -6,7 +6,10 @@ Imports ActiveQueryBuilder.Web.Server
 
 Namespace Samples
 	Public Partial Class ClientEventHandleUQ
-		Inherits Page
+		Inherits BasePage
+        ' //CUT:STD{{
+	    Protected UserQueries1 As Global.ActiveQueryBuilder.Web.WebForms.UserQueries
+
 		Protected Sub Page_Load(sender As Object, e As EventArgs)
 			' Get an instance of the QueryBuilder object
 			Dim qb = QueryBuilderStore.[Get]("ClientEventHandleUQ")
@@ -27,11 +30,8 @@ Namespace Samples
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("ClientEventHandleUQ")
-
-			' Create an instance of the proper syntax provider for your database server.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("ClientEventHandleUQ")
+            
 			' Denies metadata loading requests from the metadata provider
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 
@@ -50,5 +50,6 @@ Namespace Samples
 		Private Function GetDefaultSql() As String
 			Return "Select o.OrderID," & vbCr & vbLf & "                        c.CustomerID," & vbCr & vbLf & "                        s.ShipperID," & vbCr & vbLf & "                        o.ShipCity" & vbCr & vbLf & "                    From Orders o" & vbCr & vbLf & "                        Inner Join Customers c On o.CustomerID = c.CustomerID" & vbCr & vbLf & "                        Inner Join Shippers s On s.ShipperID = o.OrderID" & vbCr & vbLf & "                    Where o.ShipCity = 'A'"
 		End Function
+        ' //}}CUT:STD
 	End Class
 End Namespace

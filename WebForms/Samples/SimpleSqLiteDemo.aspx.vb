@@ -5,7 +5,7 @@ Imports WebForms_Samples.Helpers
 
 Namespace Samples
 	Public Partial Class SimpleSqLiteDemo
-		Inherits Page
+		Inherits BasePage
 		Protected Sub Page_Load(sender As Object, e As EventArgs)
 			' Get an instance of the QueryBuilder object
 			Dim qb = QueryBuilderStore.[Get]("SqLite")
@@ -29,14 +29,11 @@ Namespace Samples
 		''' <returns>Returns instance of the QueryBuilder object.</returns>
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("SqLite")
+			Dim queryBuilder = QueryBuilderStore.Factory.SqLite("SqLite")
 
 			' Turn this property on to suppress parsing error messages when user types non-SELECT statements in the text editor.
 			queryBuilder.BehaviorOptions.AllowSleepMode = False
-
-			' Assign an instance of the syntax provider which defines SQL syntax and metadata retrieval rules.
-			queryBuilder.SyntaxProvider = New SQLiteSyntaxProvider()
-
+            
 			' Bind Active Query Builder to a live database connection.
 				' Assign an instance of DBConnection object to the Connection property.
 			queryBuilder.MetadataProvider = New SQLiteMetadataProvider() With { _

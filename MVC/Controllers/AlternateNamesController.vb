@@ -20,16 +20,14 @@ Namespace Controllers
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("AlternateNames")
+			Dim queryBuilder = QueryBuilderStore.Factory.DB2("AlternateNames")
 
 			' Turn displaying of alternate names on in the text of result SQL query
 			queryBuilder.SQLFormattingOptions.UseAltNames = True
 
 			' Turn displaying of alternate names on in the visual UI
 			queryBuilder.SQLGenerationOptions.UseAltNames = True
-
-			queryBuilder.SyntaxProvider = New DB2SyntaxProvider()
-
+            
 			Dim sq As SQLQuery = queryBuilder.SQLQuery
 			AddHandler sq.SQLUpdated, AddressOf OnSQLUpdated
 

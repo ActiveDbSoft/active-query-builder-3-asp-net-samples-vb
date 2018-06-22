@@ -6,7 +6,8 @@ Imports ActiveQueryBuilder.Web.Server
 
 Namespace Samples
 	Public Partial Class UserDefinedFields
-		Inherits Page
+		Inherits BasePage
+        ' //CUT:STD{{
 		Protected Sub Page_Load(sender As Object, e As EventArgs)
 			' Get an instance of the QueryBuilder object
 			Dim qb = QueryBuilderStore.[Get]("UserDefinedFields")
@@ -26,14 +27,11 @@ Namespace Samples
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("UserDefinedFields")
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("UserDefinedFields")
 
 			' Enables manipulations with user-defined fields in the visual UI
 			queryBuilder.EnableUserFields = True
-
-			' Create an instance of the proper syntax provider for your database server.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+            
 			' Denies metadata loading requests from the metadata provider
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 
@@ -45,5 +43,6 @@ Namespace Samples
 
 			Return queryBuilder
 		End Function
+        ' //}}CUT:STD
 	End Class
 End Namespace

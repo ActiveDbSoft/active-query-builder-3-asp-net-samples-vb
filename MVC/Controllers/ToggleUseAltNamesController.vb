@@ -34,13 +34,11 @@ Namespace Controllers
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("ToggleUseAltNames")
+			Dim queryBuilder = QueryBuilderStore.Factory.DB2("ToggleUseAltNames")
 
 			queryBuilder.SQLFormattingOptions.UseAltNames = False
 			queryBuilder.SQLGenerationOptions.UseAltNames = False
-
-			queryBuilder.SyntaxProvider = New DB2SyntaxProvider()
-
+            
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 
 			' Load MetaData from XML document. File name stored in WEB.CONFIG file in [/configuration/appSettings/Db2XmlMetaData] key

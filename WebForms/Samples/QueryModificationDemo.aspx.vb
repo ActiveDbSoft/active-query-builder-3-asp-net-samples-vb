@@ -7,7 +7,7 @@ Imports ActiveQueryBuilder.Web.Server
 
 Namespace Samples
 	Public Partial Class QueryModificationDemo
-		Inherits Page
+		Inherits BasePage
 		Private _joinFieldName As SQLQualifiedName
 		Private _companyNameFieldName As SQLQualifiedName
 		Private _orderDateFieldName As SQLQualifiedName
@@ -55,11 +55,8 @@ Namespace Samples
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create("QueryModification")
-
-			' Create an instance of the proper syntax provider for your database server.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("QueryModification")
+            
 			' Denies metadata loading requests from the metadata provider
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 

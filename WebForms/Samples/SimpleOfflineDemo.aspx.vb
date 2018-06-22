@@ -6,7 +6,7 @@ Imports ActiveQueryBuilder.Web.Server
 
 Namespace Samples
 	Public Partial Class SimpleOfflineDemo
-		Inherits Page
+		Inherits BasePage
 		Const qbId As String = "Offline"
 		' identifies instance of the QueryBuilder object within a session
 		Protected Sub Page_Load(sender As Object, e As EventArgs)
@@ -33,11 +33,8 @@ Namespace Samples
 		''' <returns>Returns instance of the QueryBuilder object.</returns>
 		Private Function CreateQueryBuilder(AInstanceId As String) As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Create(AInstanceId)
-
-			' Create an instance of the proper syntax provider for your database server.
-			queryBuilder.SyntaxProvider = New MSSQLSyntaxProvider()
-
+			Dim queryBuilder = QueryBuilderStore.Factory.MsSql(AInstanceId)
+            
 			' Denies metadata loading requests from live database connection
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True
 

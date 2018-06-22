@@ -82,6 +82,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
+                <span class="label label-danger" style="float: right;">Pro</span>
                 <h3>User-defined Queries</h3>
                 <p>Users can save their queries and use them as data sources in subsequent queries.</p>
                 <p>
@@ -89,6 +90,7 @@
                 </p>
             </div>
             <div class="col-md-4">
+                <span class="label label-danger" style="float: right;">Pro</span>
                 <h3>User-defined Fields</h3>
                 <p>Let advanced users create own calculated fields.</p>
                 <p>
@@ -193,6 +195,7 @@
                 </p>
             </div>
             <div class="col-md-4">
+                <span class="label label-danger" style="float: right;">Pro</span>
                 <h3>Handle User-defined Queries Events</h3>
                 <p>Performing specific actions in the process of working with user-defined queries.</p>
                 <p>
