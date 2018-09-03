@@ -6,7 +6,7 @@
     <div class="jumbotron">
         <h1>Active Database Software</h1>
         <p class="lead">Active Query Builder is a visual SQL query builder, SQL parser, and professional SQL text editor.</p>
-        <p><a href="https://www.activequerybuilder.com/" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        <p><a href="https://www.activequerybuilder.com/" class="btn btn-primary btn-lg">Run &raquo;</a></p>
     </div>
 
     <div class="row">
@@ -14,65 +14,44 @@
             <h3>Simple client rendering</h3>
             <p></p>
             <p>
-                <a class="btn btn-default" href="@Url.Action("Index", "SimpleClientRendering")">Learn more &raquo;</a>
+                <a class="btn btn-default" href="@Url.Action("Index", "SimpleClientRendering")">Run &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
             <h3>Create QueryBuilder by url</h3>
             <p></p>
             <p>
-                <a class="btn btn-default" href="@Url.Action("Index", "CreateQueryBuilder")">Learn more &raquo;</a>
+                <a class="btn btn-default" href="@Url.Action("Index", "CreateQueryBuilder")">Run &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
             <h3>Web.config</h3>
             <p>Web.config XML configuration</p>
             <p>
-                <a class="btn btn-default" href="@Url.Action("Index", "CreateFromConfig")">Learn more &raquo;</a>
+                <a class="btn btn-default" href="@Url.Action("Index", "CreateFromConfig")">Run &raquo;</a>
             </p>
         </div>
-        //CUT:STD{{
         <div class="col-md-4">
             <span class="label label-danger" style="float: right;">Pro</span>
             <h3>Open Query Builder in a modal window</h3>
             <p></p>
             <p>
-                <a class="btn btn-default" href="@Url.Action("Index", "DoubleClientRendering")">Learn more &raquo;</a>
+                <a class="btn btn-default" href="@Url.Action("Index", "DoubleClientRendering")">Run &raquo;</a>
             </p>
         </div>
-        //}}CUT:STD
         <div class="col-md-4">
             <h3>Webpack</h3>
             <p></p>
             <p>
-                <a class="btn btn-default" href="@Url.Action("Index", "WebpackClientRendering")">Learn more &raquo;</a>
+                <a class="btn btn-default" href="@Url.Action("Index", "WebpackClientRendering")">Run &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
             <h3>React</h3>
             <p></p>
             <p>
-                <a class="btn btn-default" href="@Url.Action("Index", "ReactClientRendering")">Learn more &raquo;</a>
+                <a class="btn btn-default" href="@Url.Action("Index", "ReactClientRendering")">Run &raquo;</a>
             </p>
         </div>
     </div>
 </div>
-
-//CUT:PRO{{
-@section scripts
-{
-    <script>
-        $('a.btn').click(function (e) {
-            e.preventDefault();
-            var href = this.href;
-
-            $.ajax({
-                url: '/Home/Dispose',
-                success: function () {
-                    window.location.href = href;
-                }
-            });
-        });
-    </script>
-}
-//}}CUT:PRO

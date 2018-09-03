@@ -5,6 +5,8 @@
     var controls = Html.QueryBuilder(Model);
 }
 
+<link type="text/css" rel="stylesheet" href="../../Content/foundation.min.css" />
+
 <div class="row">
     <div class="col-md-12">
         <h1>Alternate Names Demo</h1>
@@ -18,7 +20,7 @@
                     <div class="qb-ui-structure-tabs">
                         <div class="qb-ui-structure-tabs__tab">
                             <input type="radio" id="tree-tab" name="qb-tabs" checked />
-                            <label class="ui-widget-header qb-widget-header" for="tree-tab">Database</label>
+                            <label for="tree-tab">Database</label>
                             <div class="qb-ui-structure-tabs__content">
                                 @controls.ObjectTreeView().GetHtml()
                             </div>
@@ -74,8 +76,22 @@
 @section scripts
 {
     <script>
+        AQB.Web.theme = {
+            widget: 'card',
+            header: 'card-divider',
+            content: 'card-section',
+            button: 'button',
+            buttonEnabled: 'primary',
+            buttonDisabled: 'disabled',
+            active: 'button hollow',
+            hover: 'hollow',
+            cornerAll: 'cornerAll',
+            cornerTop: 'cornerTop',
+            cornerBottom: 'cornerBottom'
+        }
+
         $(function () {
-            AQB.Web.onApplicationReady(function () {
+            AQB.Web.onQueryBuilderReady(function () {
                 AQB.Web.Core.on(AQB.Web.Core.Events.UserDataReceived, onUserDataReceived);
             });
 
@@ -83,7 +99,7 @@
             function onUserDataReceived(data) {
                 $('.alternate-sql textarea').eq(0).val(data.AlternateSQL);
                 $('.alternate-sql textarea').eq(1).val(data.SQL);
-            }; 
+            };
         });
     </script>
 }
