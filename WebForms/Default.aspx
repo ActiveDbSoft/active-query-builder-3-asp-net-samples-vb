@@ -198,7 +198,6 @@
                     <a class="btn btn-default" href="Samples/ClientEventHandle.aspx">Run &raquo;</a>
                 </p>
             </div>
-
             <div class="col-md-4">
                 <span class="label label-danger" style="float: right;">Pro</span>
                 <h3>Handle User-defined Queries Events</h3>
@@ -207,7 +206,6 @@
                     <a class="btn btn-default" href="Samples/ClientEventHandleUQ.aspx">Run &raquo;</a>
                 </p>
             </div>
-
         </div>
     </div>
 </asp:Content>
