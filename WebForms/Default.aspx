@@ -78,7 +78,7 @@
                 </p>
             </div>
         </div>
-
+        
         <div class="row">
             <div class="col-md-12">
                 <h2 class="section-title">User-defined Queries and Fields</h2>
@@ -102,7 +102,7 @@
                 </p>
             </div>
         </div>
-
+        
         <div class="row">
             <div class="col-md-12">
                 <h2 class="section-title">User Interface Customizations</h2>
