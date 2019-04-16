@@ -48,7 +48,7 @@ Namespace Handlers
 		End Function
 
 		Public Shared Function GetData(m As GridModel) As Object
-			Dim qt = QueryTransformerStore.[Get]("QueryResults")
+			Dim qt As QueryTransformer = QueryTransformerStore.[Get]("QueryResults")
 
 			qt.Skip((m.Pagenum * m.Pagesize).ToString())
 			qt.Take(If(m.Pagesize = 0, "", m.Pagesize.ToString()))

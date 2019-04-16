@@ -71,6 +71,8 @@ Namespace Controllers
 			Finally
 				metadataContainer.EndUpdate()
 			End Try
+
+		    queryBuilder1.MetadataStructure.Refresh()
 		End Sub
 
 		'''///////////////////////////////////////////////////////////////////////
@@ -87,6 +89,8 @@ Namespace Controllers
 			queryBuilder1.MetadataProvider = Nothing
 			Dim mc As MetadataContainer = queryBuilder1.MetadataContainer
 			AddHandler mc.ItemMetadataLoading, AddressOf way2ItemMetadataLoading
+
+		    queryBuilder1.MetadataStructure.Refresh()
 		End Sub
 
 		Private Sub way2ItemMetadataLoading(sender As Object, item As MetadataItem, types As MetadataType)
@@ -163,6 +167,7 @@ Namespace Controllers
 				queryBuilder1.MetadataProvider = New EventMetadataProvider()
 
 				AddHandler DirectCast(queryBuilder1.MetadataProvider, EventMetadataProvider).ExecSQL, AddressOf way3EventMetadataProvider_ExecSQL
+			    queryBuilder1.MetadataStructure.Refresh()
 			Catch ex As Exception
 				queryBuilder1.Message.[Error](ex.Message)
 			End Try
@@ -253,6 +258,8 @@ Namespace Controllers
 			Finally
 				queryBuilder1.MetadataContainer.EndUpdate()
 			End Try
+
+		    queryBuilder1.MetadataStructure.Refresh()
 		End Sub
 
 		Private Shared Function TypeToDbType(type As Type) As DbType

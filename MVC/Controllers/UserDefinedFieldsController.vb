@@ -21,10 +21,10 @@ Namespace Controllers
 
 		Private Function CreateQueryBuilder() As QueryBuilder
 			' Create an instance of the QueryBuilder object
-			Dim queryBuilder = QueryBuilderStore.Factory.MsSql("UserDefinedFields")
+            Dim queryBuilder As QueryBuilder = QueryBuilderStore.Factory.MsSql("UserDefinedFields")
 
-			' Enables manipulations with user-defined fields in the visual UI
-			queryBuilder.EnableUserFields = True
+            ' Enables manipulations with user-defined fields in the visual UI
+            queryBuilder.DataSourceOptions.EnableUserFields = True
             
 			' Denies metadata loading requests from the metadata provider
 			queryBuilder.MetadataLoadingOptions.OfflineMode = True

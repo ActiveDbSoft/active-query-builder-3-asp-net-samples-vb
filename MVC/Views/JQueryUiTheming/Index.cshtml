@@ -2,7 +2,7 @@
 @model ActiveQueryBuilder.Web.Server.QueryBuilder
 @{
     ViewBag.Title = "jQueryUI Theming Demo";
-    var controls = Html.QueryBuilder(Model);
+    var controls = Html.QueryBuilder(Model, s => s.Theme = "jqueryui");
 }
 
 <div class="row">
