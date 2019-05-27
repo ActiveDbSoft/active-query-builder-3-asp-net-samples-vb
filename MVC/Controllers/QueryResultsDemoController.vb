@@ -62,9 +62,17 @@ Namespace Controllers
 				Dim data = DataBaseHelper.GetData(conn, sql, _params)
 				Return Json(data, JsonRequestBehavior.AllowGet)
 			Catch e As Exception
-				Return New HttpStatusCodeResult(CInt(HttpStatusCode.BadRequest), e.Message)
+				Return Json(New ErrorOutput(e.Message), JsonRequestBehavior.AllowGet)
 			End Try
 		End Function
+
+        Private Class ErrorOutput
+            Public ErrorText as String
+
+            Public Sub New(errorText As String) 
+                Me.ErrorText = errorText
+            End Sub
+        End Class
 
 		''' <summary>
 		''' Creates and initializes a new instance of the QueryBuilder object.

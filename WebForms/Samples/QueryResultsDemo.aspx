@@ -15,7 +15,7 @@
         </ul>
         <div class="row" id="qb">
             <div class="col-md-12">
-                <AQB:QueryBuilderControl ID="QueryBuilderControl1" runat="server" Theme="jqueryui" />
+                <AQB:QueryBuilderControl ID="QueryBuilderControl1" Theme="jqueryui" runat="server" Language="en" />
                 <div class="qb-ui-layout">
                     <div class="qb-ui-layout__top">
                         <div class="qb-ui-layout__left">
@@ -33,7 +33,7 @@
                             <AQB:SubQueryNavigationBar runat="server" ID="SubQueryNavigationBar1" />
                             <AQB:Canvas runat="server" ID="Canvas1" />
                             <AQB:StatusBar runat="server" ID="StatusBar1" />
-                            <AQB:Grid runat="server" ID="Grid1" />
+                            <AQB:Grid runat="server" ID="Grid1" UseCustomExpressionBuilder="ExpressionColumn" />
                         </div>
                     </div>
                     <div class="qb-ui-layout__bottom">
@@ -47,10 +47,11 @@
                 <AQB:CriteriaBuilder runat="server" ID="CriteriaBuilder1" />
             </div>
             <div class="col-md-12">
+                <div class="alert alert-danger"></div>
                 <div id="second-tabs" class="block-flat">
                     <ul>
                         <li><a href="#jx">JqxGrid</a></li>
-                        <li><a href="#js">JsGrid</a></li>
+                        <li><a id="jsgrid-tab" href="#js">JsGrid</a></li>
                         <li><a href="#rg">ReactDataGrid</a></li>
                         <li><a href="#je">JsonEditor</a></li>
                         <li><a href="#ur">Your implementation</a></li>
@@ -89,6 +90,7 @@
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.11.0/jsoneditor.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/codemirror.min.css" />
 
     <style>
         #qb, #qr {
@@ -108,6 +110,10 @@
             margin-left: 5px;
             font-weight: bold;
         }
+
+        .execute, .alert-danger {
+            display: none;
+        }
     </style>
 
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
@@ -118,6 +124,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.11.0/jsoneditor.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/mode/sql/sql.min.js"></script>
+
     <script>
         var dataUrl = "/QueryResultsDemo/GetData";
 
@@ -127,7 +136,12 @@
             $('[href="#qr"]').click(onOpenQueryResults);
             $('.next').button().click(function () { fillJsonEditor(fillJsonEditor.page + 1); return false; });
             $('.prev').button().click(function () { fillJsonEditor(fillJsonEditor.page - 1); return false; });
-            AQB.Web.onApplicationReady(subscribeToChanges);
+            AQB.Web.onCriteriaBuilderReady(subscribeToChanges);
+            AQB.Web.onQueryBuilderReady(createExpressionEditor);
+
+            $('#jsgrid-tab').click(function() {
+                $("#jsgrid").jsGrid('refresh');
+            });
         });
 
         function onOpenQueryResults() {
@@ -148,17 +162,13 @@
                 });
         };
 
-        function subscribeToChanges() {
-            setTimeout(function () {
-                var cb = AQB.Web.CriteriaBuilderContainer.first();
+        function subscribeToChanges(cb) {
+            cb.loadColumns();
 
-                AQB.Web.Core.on(AQB.Web.Core.Events.SQLChanged, cb.loadColumns.bind(cb));
-
-                cb.on(cb.Events.CriteriaBuilderChanged,
-                    function () {
-                        onCriteriaBuilderChanged(cb, updateGrids);
-                    });
-            }, 1000);
+            cb.on(cb.Events.CriteriaBuilderChanged,
+                function () {
+                    onCriteriaBuilderChanged(cb, updateGrids);
+                });
         }
 
         function onCriteriaBuilderChanged(cb, callback) {
@@ -169,23 +179,59 @@
         }
 
         function createGrids(columns) {
-            createJqxGrid(columns);
-            createJsGrid(columns);
-            createReactGrid(columns);
-            fillJsonEditor(0);
+            $('.alert-danger').hide();
+
+            testQuery(function() {
+                createJqxGrid(columns);
+                createJsGrid(columns);
+                createReactGrid(columns);
+                fillJsonEditor(0);
+            });
         }
 
         function updateGrids() {
-            dataAdapter.dataBind();
-            jsgrid.jsGrid();
-            reactGrid.updateRows();
-            fillJsonEditor(0);
+            $('.alert-danger').hide();
+
+            testQuery(function() {
+                dataAdapter.dataBind();
+                jsgrid.jsGrid();
+                reactGrid.updateRows();
+                fillJsonEditor(0);
+            });
+        }
+
+        function testQuery(callback) {
+            $.ajax({
+                url: dataUrl,
+                dataType: "json",
+                data: {
+                    pagenum: 0,
+                    pagesize: 1
+                },
+                success: function(data) {
+                    if (data.ErrorText)
+                        showError(data.ErrorText);
+                    else {
+                        hideError();
+                        callback();
+                    }
+                },
+                error: function(xhr, error, text) {
+                    showError(text);
+                }
+            });
         }
 
         function createJqxGrid(columns) {
             var source = {
+                type: 'POST',
+                contentType: 'application/json;',
                 datatype: 'json',
                 url: dataUrl,
+                formatData: function (data) {
+                    data.params = getParams();
+                    return JSON.stringify(data);
+                },
                 sort: function () {
                     $("#jqxgrid").jqxGrid('updatebounddata');
                 },
@@ -325,7 +371,7 @@
                             url: dataUrl,
                             dataType: "json",
                             data: {
-                                pagenum: filter.pageIndex,
+                                pagenum: filter.pageIndex - 1,
                                 pagesize: filter.pageSize,
                                 sortdatafield: filter.sortField,
                                 sortorder: filter.sortOrder
@@ -344,7 +390,7 @@
 
             $('jsgrid-header-cell').click(function () {
                 var field = this.innerText;
-                $("#jsGrid").jsGrid("sort", field);
+                $("#jsgrid").jsGrid("sort", field);
             });
         }
 
@@ -373,6 +419,115 @@
                 }
             });
 
+        }
+
+        function createExpressionEditor(qb) {
+            window.codeMirror = CodeMirror(document.body, {
+                mode: 'text/x-sql',
+                indentWithTabs: true,
+                smartIndent: true,
+                lineNumbers: true,
+                matchBrackets: true,
+                width: '500px',
+                height: '250px'
+            });
+
+            $('.CodeMirror').hide();
+
+            qb.GridComponent.on(AQB.Web.QueryBuilder.GridComponent.Events.GridBeforeCustomEditCell, BeforeCustomEditCell);
+        }
+
+        function BeforeCustomEditCell(data) {
+            var row = data.row;
+            var cell = data.cell;
+
+            var error = $('<p class="ui-state-error" style="display: none;"></div>');
+
+            var $dialog = $('<div>').dialog({
+                modal: true,
+                width: 'auto',
+                title: 'Custom expression editor',
+                buttons: [{
+                    text: "OK",
+                    click: function () {
+                        var newValue = codeMirror.getValue();
+
+                        var ifValid = function () {
+                            cell.updateValue(newValue);
+                            $dialog.dialog("close");
+                        }
+
+                        var ifNotValid = function (message) {
+                            error.html(message).show();
+                        }
+
+                        validate(newValue, ifValid, ifNotValid);
+                    }
+                }, {
+                    text: "Cancel",
+                    click: function () {
+                        $dialog.dialog("close");
+                    }
+                }
+                ]
+            });
+
+            $dialog.append(error, $('.CodeMirror').show());
+            $dialog.parent().css({
+                top: '25%',
+                left: '30%',
+                width: 600
+            });
+
+            codeMirror.setValue(row.FormattedExpression || '');
+            codeMirror.refresh();
+        };
+        
+        function validate(expression, ifValid, ifNotValid) {
+            AQB.Web.QueryBuilder.validateExpression(expression, function (isValid, message) {
+                if (isValid)
+                    ifValid();
+                else
+                    ifNotValid(message);
+            });
+        }
+
+        function showError(statusText) {
+            $('.alert-danger').show().text(statusText);
+            $("#second-tabs").hide();
+        }
+
+        function hideError() {
+            $('.alert-danger').hide();
+            $("#second-tabs").show();
+        }
+
+        function getParams() {
+            var result = [];
+            var params = getUniqueQueryParams();
+
+            for (var i = 0; i < params.length; i++) {
+                result.push({
+                    Name: params[i].FullName,
+                    Value: $('input.' + params[i].Name).val()
+                });
+            }
+
+            return result;
+        }
+
+        function getUniqueQueryParams() {
+            var params = AQB.Web.QueryBuilder.queryParams;
+            var result = [];
+
+            for (var i = 0, l = params.length; i < l; i++) {
+                var param = params[i];
+
+                if (result.find(r => r.FullName === param.FullName) == null)
+                    result.push(param);
+            }
+
+            return result;
         }
     </script>
 </asp:Content>

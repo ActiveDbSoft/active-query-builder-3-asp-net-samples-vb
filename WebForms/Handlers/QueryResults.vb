@@ -24,13 +24,25 @@ Namespace Handlers
 			End Get
 		End Property
 
-		Public Sub ProcessRequest(context As HttpContext) Implements IHttpHandler.ProcessRequest
-			Dim model = If(CreateFromPostData(context.Request), CreateFromGetParams(context.Request))
-			Dim result = GetData(model)
-			Dim content = Newtonsoft.Json.JsonConvert.SerializeObject(result)
+		Public Sub ProcessRequest(context As HttpContext) Implements IHttpHandler.ProcessRequest			
+		    Try
+		        Dim model = If(CreateFromPostData(context.Request), CreateFromGetParams(context.Request))
+		        Dim result = GetData(model)
+		        Dim content = Newtonsoft.Json.JsonConvert.SerializeObject(result)
 
-			context.Response.Write(content)
+		        context.Response.Write(content)
+		    Catch e As Exception
+		        context.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(New ErrorOutput(e.Message)))
+		    End Try
 		End Sub
+
+		Private Class ErrorOutput
+		    Public ErrorText as String
+
+		    Public Sub New(errorText As String) 
+		        Me.ErrorText = errorText
+		    End Sub
+		End Class
 
 		Private Function CreateFromGetParams(r As HttpRequest) As GridModel
 			'filterscount=0&groupscount=0&=0&=10&recordstartindex=0&recordendindex=10
