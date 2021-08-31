@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "JavaScript", "JavaScript\JavaScript.vbproj", "{E42FC343-761D-4BF8-858A-6DB02B1EED49}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MVC", "MVC\MVC.vbproj", "{60FBCC64-E66E-49D6-B776-7DED6341A1FF}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MVC Demo", "MVC\MVC Demo.vbproj", "{60FBCC64-E66E-49D6-B776-7DED6341A1FF}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WebForms", "WebForms\WebForms.vbproj", "{E7EA812C-4EB8-40F8-84C5-5CA084D042F7}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WebForms Demo", "WebForms\WebForms Demo.vbproj", "{E7EA812C-4EB8-40F8-84C5-5CA084D042F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
